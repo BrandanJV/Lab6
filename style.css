@@ -21,12 +21,10 @@ h4{
 
 #animals {
   display: flex;
+  flex-wrap: wrap;
   width: 70%;
 }
 
-.animal-div{
-  margin: 0em 1em;
-}
 .animal-item {
   float: left;
   padding: 10px;

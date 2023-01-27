@@ -34,23 +34,19 @@ $(document).ready(function() {
             method: "GET",
         }).then(function(res){
             res.data.forEach((element, index) => {
-                console.log(index)
-                console.log(element)
-                // var a = $("<img>");
-                // a.addClass("animal-image");
-                // a.attr("src", element.images.original_still.url)
-                // a.attr("data-static", element.images.original_still.url);
-                // a.attr("data-dynamic", element.images.looping.url);
-                // a.attr("data-state", false);
-                var x = $("<div>");
-                x.addClass("animal-div");
+                var a = $("<img>");
+                a.addClass("animal-image");
+                a.attr("src", element.images.original_still.url)
+                a.attr("data-static", element.images.original_still.url);
+                a.attr("data-dynamic", element.images.original.url);
+                a.attr("data-moving", "false");
 
-                $(".animal-div").append(`<h3>'${element.title}'</h3>`)  
-                // $(".animal-div").append(a);                
-                $(".animals-div").append(`<h4> PG: '${element.rating}'</h4>`);
-                $(".animals-div").append(`<h4> By: '${element.username}'</h4>`);
+                var x = $("<div>");
+                $(x).append(`<h3>'${element.title}'</h3>`)  
+                $(x).append(a);                
+                $(x).append(`<h4> PG: '${element.rating}'</h4>`);
+                $(x).append(`<h4> By: '${element.username}'</h4>`);
                 $("#animals").append(x);
-                
             })
         })
     })
@@ -58,7 +54,13 @@ $(document).ready(function() {
 
     // La lógica del click de cada imagen para "intercambiar las urls"
     $("#animals").on("click", ".animal-image", function(){
-        alert("ok");
+        console.log($(this).attr('data-moving'));
+        if($(this).attr('data-moving') == "false"){
+            $(this).attr('data-moving', "true").attr("src", $(this).attr('data-dynamic'));
+        } 
+        else{
+            $(this).attr('data-moving', "false").attr("src", $(this).attr('data-static'));
+        }
     })
 
 
