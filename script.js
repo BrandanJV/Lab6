@@ -67,7 +67,12 @@ $(document).ready(function() {
     // La lógica del formulario para agregar mas botones a la lista
     $("#add-animal").on("click", function(e) {
         e.preventDefault();
-
+        var a = $("<button>");
+        let animal = $("#animal-input").val();
+        a.text(animal)
+        a.addClass("animal-button")
+        a.attr("data-type",animal)
+        $("#animal-buttons").append(a);
     })
 
 
